@@ -1,0 +1,62 @@
+<div class="mdl-grid widgets">
+  <div class="mdl-cell mdl-cell--6-col">
+    <div class="widget-card mdl-card mdl-shadow--2dp">
+      <div *ngFor="let widget of widgets" (click)="selectWidget(widget)">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">{{widget.name}}</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <img [src]="widget.img" [alt]="widget.name" width="100" height="100">
+          {{widget.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--6-col">
+    <div class="widget-card mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text" *ngIf="!selectedWidget">Select a Widget</h2>
+        <h2 class="mdl-card__title-text" *ngIf="selectedWidget">{{selectedWidget.name}}</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <img *ngIf="selectedWidget" [src]="selectedWidget?.img" [alt]="selectedWidget.name" width="100" height="100">
+        {{selectedWidget?.name}}
+        <pre>{{selectedWidget|json}}</pre>
+      </div>
+      <div class="mdl-card__actions">
+        <button type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="selectWidget(null)">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1 [style.color]="color">{{ingredient}}</h1>
+<input type="text" [disabled]="disabled" [value]="love">
+<button (click)="hitme($event, 'baby'); setColor('brown')">Hit me</button>
+<app-booyah></app-booyah>
+<input type="text" [(ngModel)]="color">
+{{color}}
+
+<ul>
+  <li *ngFor="let item of smList; let i = index" [style.background-color]="item">{{item}} - {{i}}</li>
+</ul>
+
+<span *ngFor="let num of smNumber">{{num}}</span>
+
+<input type="text" #colorInput [(ngModel)]="blah">
+<pre>{{colorInput.value|json}}</pre>
+<pre>{{blah}}</pre>
+
+<input type="text" [(ngModel)]="iffy">
+
+<p *ngIf="iffy">This is an {{iffy}}</p>
+
+<span [ngSwitch]="iffy">
+  <span *ngSwitchCase="'1'">1</span>
+  <span *ngSwitchCase="'2'">2</span>
+  <span *ngSwitchCase="'3'">3</span>
+  <span *ngSwitchCase="'4'">4</span>
+  <span *ngSwitchDefault>default</span>
+</span>
+
+<p>{{daFranchise?.fname}} {{daFranchise?.lname}}</p>
